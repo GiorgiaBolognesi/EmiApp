@@ -11,7 +11,7 @@ class MyPreference (context: Context) {
     val preference = context.getSharedPreferences(PREFERENCE_NAME, Context.MODE_PRIVATE)
 
     fun getLoginCount() : String? {
-        return preference.getString(PREFERENCE_LANGUAGE , "en-us")
+        return preference.getString(PREFERENCE_LANGUAGE , "en")
     }
 
     fun setLoginCount(Language:String) {

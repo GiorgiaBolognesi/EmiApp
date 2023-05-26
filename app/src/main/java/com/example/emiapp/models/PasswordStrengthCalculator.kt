@@ -40,22 +40,22 @@ class PasswordStrengthCalculator : TextWatcher {
 
         if (password.length in 0..7) {
             strengthColor.value = R.color.weak
-            strengthLevel.value = "PASSWORD DEBOLE"
+            strengthLevel.value = "WEAK PASSWORD"
         } else if (password.length in 8..10) {
             if (lowerCase.value == 1 || upperCase.value == 1 || digit.value == 1 || specialchar.value == 1) {
                 strengthColor.value = R.color.medium
-                strengthLevel.value = "PASSWORD MEDIA"
+                strengthLevel.value = "MEDIUM PASSWORD"
             }
         } else if (password.length in 11..16) {
             if (lowerCase.value == 1 || upperCase.value == 1 || digit.value == 1 || specialchar.value == 1) {
                 if (lowerCase.value == 1 && upperCase.value == 1) {
                     strengthColor.value = R.color.strong
-                    strengthLevel.value = "PASSWORD FORTE"
+                    strengthLevel.value = "STRONG PASSWORD"
                 }
             } else if (password.length > 16) {
                 if (lowerCase.value == 1 && upperCase.value == 1 && digit.value == 1 && specialchar.value == 1) {
                     strengthColor.value = R.color.bulletproof
-                    strengthLevel.value = "PASSWORD MOLTO FORTE"
+                    strengthLevel.value = "BULLETPROOF PASSWORD"
                 }
             }
         }
