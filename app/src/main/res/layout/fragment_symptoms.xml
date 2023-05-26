@@ -79,7 +79,7 @@
                     android:padding="10dp"
                     android:text="@string/nothing"
                     android:textSize="18sp"
-                    android:textColor="@color/black"/>
+                    android:textColor = "?android:textColorPrimary"/>
 
                 <CheckBox
                     android:id="@+id/dullPain"
@@ -91,7 +91,7 @@
                     android:padding="10dp"
                     android:textSize="18sp"
                     android:text ="@string/dullPain"
-                    android:textColor="@color/black"
+                    android:textColor = "?android:textColorPrimary"
                     android:drawableTint="@color/celestescuro"/>
 
                 <CheckBox
@@ -103,7 +103,7 @@
                     android:button="@null"
                     android:padding="10dp"
                     android:text ="@string/throbbingPain"
-                    android:textColor="@color/black"
+                    android:textColor = "?android:textColorPrimary"
                     android:drawableTint="@color/celestescuro"/>
 
                 <CheckBox
@@ -117,7 +117,7 @@
                     android:textSize="18sp"
                     android:padding="10dp"
                     android:text ="@string/nausea"
-                    android:textColor="@color/black"
+                    android:textColor = "?android:textColorPrimary"
                     />
 
 

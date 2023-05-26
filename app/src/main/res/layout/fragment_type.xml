@@ -76,7 +76,7 @@
                     android:button="@null"
                     android:padding="10dp"
                     android:text="@string/emicrania"
-                    android:textColor="@color/black"
+                    android:textColor = "?android:textColorPrimary"
                     android:textSize="18sp"/>
 
 
@@ -91,7 +91,7 @@
                     android:padding="10dp"
                     android:text ="@string/cefalea"
                     android:textSize="18sp"
-                    android:textColor="@color/black"
+                    android:textColor = "?android:textColorPrimary"
                     />
 
 
@@ -105,7 +105,7 @@
                     android:gravity="center_horizontal"
                     android:padding="10dp"
                     android:text="@string/grappolo"
-                    android:textColor="@color/black"
+                    android:textColor = "?android:textColorPrimary"
                     />
 
 
