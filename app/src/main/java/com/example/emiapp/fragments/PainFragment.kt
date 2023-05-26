@@ -87,7 +87,6 @@ class PainFragment : Fragment() {
                 painH = getString(R.string.intense)
             }
 
-            Toast.makeText(requireContext(),painH.toString(), Toast.LENGTH_SHORT).show()
             val result = Bundle()
             result.putString("Pain", painH )
             parentFragmentManager.setFragmentResult("datafromPain", result)

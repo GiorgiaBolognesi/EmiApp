@@ -80,8 +80,7 @@ class NoteFragment : Fragment() {
             if (note.text != null) {
                 noteH = note.text.toString()
             }
-            Toast.makeText(requireContext(),noteH.toString(), Toast.LENGTH_SHORT).show()
-
+            
             val result = Bundle()
             result.putString("Note", noteH )
             parentFragmentManager.setFragmentResult("datafromNote", result)

@@ -25,7 +25,7 @@ class SettingsFragment : Fragment() {
     var nightModeSwitched : Boolean = false
     lateinit var sharedPreferences: SharedPreferences
     lateinit var myPreference: MyPreference
-    val languageList:Array<String> = arrayOf("italiano", "en")
+    val languageList:Array<String> = arrayOf("it", "en")
     lateinit var button: Button
     lateinit var audioManager: AudioManager
     lateinit var buttonPlus: Button
