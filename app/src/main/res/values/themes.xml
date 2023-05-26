@@ -11,6 +11,7 @@
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+        <item name="android:textColorPrimary">@color/black</item>
         <!-- Customize your theme here. -->
     </style>
 
@@ -25,5 +26,6 @@
     </style>
     <style name="Theme.EmicraniaApp.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
     <style name="Theme.EmicraniaApp.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
 
 </resources>
