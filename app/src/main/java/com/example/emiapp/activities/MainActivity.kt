@@ -43,12 +43,10 @@ import java.util.*
 class MainActivity : AppCompatActivity() {
     lateinit var toggle : ActionBarDrawerToggle
     lateinit var drawerLayout: DrawerLayout
-    lateinit var header_layout : NavigationView
-    lateinit var email: TextView
     lateinit var calendarButton: FloatingActionButton
     lateinit var addHeadacheButton : FloatingActionButton
+    lateinit var textNew:TextView
     private lateinit var textDuration : TextView
-    lateinit var texDuration : TextView
     lateinit var daysWithout : TextView
     private  var endTime: String? = null
     private var endDate: String? = null
@@ -67,74 +65,60 @@ class MainActivity : AppCompatActivity() {
     private var PERMISSION_POST_NOTIFICATION : Boolean = false
     private var allPermissionGranted : Boolean? = null
     lateinit var myPreference: MyPreference
-
-    /////////////////////////
     private lateinit var currentUser : FirebaseUser
     private lateinit var mAuth : FirebaseAuth
     private lateinit var storage: StorageReference
-    //////////////////////////
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         val intent : Intent = getIntent()
         addHeadacheButton = findViewById(R.id.addHeadhacheButton)
+        textNew = findViewById(R.id.newH)
         calendarButton = findViewById(R.id.CalendarButton)
         endDateFromResume = intent.getStringExtra("endDate").toString()
         endTimeFromResume = intent.getStringExtra("endTime").toString()
         textDuration = findViewById(R.id.textDuration)
 
-        ////////////////////////////////
+        //MENU
         mAuth = FirebaseAuth.getInstance()
         currentUser = mAuth.currentUser!!
         updateNavHeader()
-        /////////////////////////////////
-
-        //menu
         drawerLayout = findViewById(R.id.drawerLayout)
         val navView : NavigationView = findViewById(R.id.nav_view)
-
         toggle =  ActionBarDrawerToggle(this, drawerLayout, R.string.open_nav, R.string.close_nav)
         drawerLayout.addDrawerListener(toggle)
-
         toggle.syncState()
-
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         navView.setNavigationItemSelectedListener {
-
             it.isChecked = true
-
             when(it.itemId) {
-
                 R.id.nav_pass ->  replaceFragment(PasswordFragment(), it.title.toString())
                 R.id.nav_profile -> replaceFragment(ShowProfileFragment(), it.title.toString())
                 R.id.nav_settings ->  replaceFragment(SettingsFragment(), it.title.toString())
-
                 (R.id.nav_home) -> {
                     val intent = Intent(this, MainActivity::class.java)
                     this.startActivity(intent)
                 }
 
-
                 (R.id.nav_logout) -> {
-
-                    //dialog
                     val builder = android.app.AlertDialog.Builder(this)
                     val view = layoutInflater.inflate(R.layout.dialog_logout, null)
-
-
                     builder.setView(view)
                     val dialog = builder.create()
-
-
-
                     view.findViewById<Button>(R.id.btnConfirm).setOnClickListener {
-                        //logout
+                        //LOGOUT
+                        val appContext = applicationContext
+                        val sharedPreferences = appContext.getSharedPreferences("sharedPrefsMain", Context.MODE_PRIVATE)
+                        val editor = sharedPreferences.edit()
+                        editor.putString("DateList", null)
+                        editor.putString("TimeList", null)
+                        editor.apply()
                         FirebaseAuth.getInstance().signOut()
                         val intent = Intent(this, LoginActivity::class.java)
                         this.startActivity(intent)
-                        Toast.makeText(this, "Logout effettuato con sucesso!", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, getString(R.string.logoutSuccess), Toast.LENGTH_SHORT).show()
                         dialog.dismiss()
                     }
 
@@ -145,10 +129,8 @@ class MainActivity : AppCompatActivity() {
                     if (dialog.window != null) {
                         dialog.window!!.setBackgroundDrawable(ColorDrawable(0))
                     }
-
                     dialog.show() }
             }
-
             true
         }
 
@@ -163,36 +145,35 @@ class MainActivity : AppCompatActivity() {
         handler.postDelayed(object : Runnable {
             override fun run() {
                 durationBetween()
-
                 if (durDays != null && durDays != 0) {
                     if (durDays == 1) {
-                        durationD = durDays.toString() + " giorno "
+                        durationD = durDays.toString() + " " + getString(R.string.day) + " "
                     }
                     else {
-                        durationD = durDays.toString() + " giorni "
+                        durationD = durDays.toString() + " " + getString(R.string.days) + " "
                     }
                 }
                 if (hours != null && hours != 0) {
                     if (hours == 1) {
-                        durationH =  hours.toString() + " ora "
+                        durationH =  hours.toString() + " " + getString(R.string.hour) + " "
                     }
                     else {
-                        durationH = hours.toString() + " ore "
+                        durationH = hours.toString() + " " + getString(R.string.hours) + " "
                     }
                 }
                 if (min != null && min != 0) {
                     if (min == 1) {
-                        durationM =  min.toString() + " minuto "
+                        durationM =  min.toString() + " " + getString(R.string.minute) + " "
                     }
                     else {
-                        durationM = min.toString() + " minuti "
+                        durationM = min.toString() + " " + getString(R.string.minutes) + " "
                     }
                 }
                 else if ((durDays == null ) && (hours == null) && (min == null)){
-                    textDuration.setText("Non hai ancora avuto un attacco!")
+                    textDuration.setText(getString(R.string.noAttach))
                 }
                 else if (durDays == 0 &&  hours == 0 && min == 0) {
-                    durationM =   "1 minuto "
+                    durationM =  " " + getString(R.string.oneMinute)
                 }
                 daysWithout.setText(durationD + durationH + durationM)
                 handler.postDelayed(this, 1000)
@@ -200,7 +181,6 @@ class MainActivity : AppCompatActivity() {
         }, 1000)
 
         startPeriodicWorker(this)
-        runInstantWorker(this)
         requestPermissionNotification()
 
         calendarButton.setOnClickListener {
@@ -220,30 +200,20 @@ class MainActivity : AppCompatActivity() {
         val navEmail = headerView.findViewById<TextView>(R.id.tvemailnav)
         val navImage = headerView.findViewById<ImageView>(R.id.tvimagenav)
         val userId = FirebaseAuth.getInstance().currentUser!!.uid
-
         navEmail.setText(currentUser.email)
-
         storage = FirebaseStorage.getInstance().getReference("Task Images/"+userId)
-
         val localfile = File.createTempFile("tempImage", "jpg")
         storage.getFile(localfile).addOnCompleteListener {
 
             if (it.isSuccessful) {
-
                 val bitmap = BitmapFactory.decodeFile(localfile.absolutePath)
                 navImage.setImageBitmap(bitmap)
             }
             else {
-
                 navImage.setImageDrawable(getResources().getDrawable(R.drawable.profile_avatar));
             }
-
-
-
         }.addOnFailureListener {
-            //Toast.makeText(context, "Errore", Toast.LENGTH_SHORT).show()
         }
-
     }
 
     private fun replaceFragment(fragment: Fragment, title : String) {
@@ -254,14 +224,12 @@ class MainActivity : AppCompatActivity() {
         fragmentTransaction.commit()
         drawerLayout.closeDrawers()
         setTitle(title)
-
         addHeadacheButton.visibility = View.GONE
         calendarButton.visibility = View.GONE
         textDuration.visibility = View.GONE
-        //textNew.visibility = View.GONE
+        textNew.visibility = View.GONE
         daysWithout.visibility = View.GONE
     }
-
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
@@ -269,7 +237,6 @@ class MainActivity : AppCompatActivity() {
 
             return true
         }
-
         return super.onOptionsItemSelected(item)
     }
 
@@ -348,7 +315,6 @@ class MainActivity : AppCompatActivity() {
                 val dateMin = simpleDateFormat.parse("00:00")
                 difference = (dateMax.time - startTimeMain.time) + (endTimeMain.time - dateMin.time)
             }
-
             days = (difference / (1000 * 60 * 60 * 24)).toInt()
             hours =
                 ((difference - (1000 * 60 * 60 * 24 * days!!)) / (1000 * 60 * 60)).toInt()
@@ -356,12 +322,11 @@ class MainActivity : AppCompatActivity() {
                 ((difference - (1000 * 60 * 60 * 24 * days!!) - (1000 * 60 * 60 * hours!!)) / (1000 * 60)).toInt()
 
             if(min!! <0) {
-                min = 0}
-
+                min = 0
+            }
             if(hours!! <0) {
                 hours = 0
             }
-
             if (durDays == 3) {
                 val intent = Intent(this, MainActivity::class.java).apply {
                     flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK

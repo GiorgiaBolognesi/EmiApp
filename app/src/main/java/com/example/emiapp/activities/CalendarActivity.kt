@@ -34,8 +34,6 @@ class CalendarActivity : AppCompatActivity() {
             val intent = Intent(this, MainActivity::class.java)
             this.startActivity(intent)
         }
-
-
     }
 
     private fun replaceFragment(fragment: Fragment, s:String) {

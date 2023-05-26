@@ -27,7 +27,4 @@ class AddHeadacheActivity : AppCompatActivity() , FragmentNavigation {
         }
         transaction.commit()
     }
-
-
-
 }
