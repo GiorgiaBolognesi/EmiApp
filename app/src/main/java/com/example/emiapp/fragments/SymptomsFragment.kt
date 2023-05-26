@@ -30,7 +30,6 @@ class SymptomsFragment : Fragment() {
     var symptoms: String = ""
     lateinit var n : Button
     lateinit var checkSymptoms: CheckBox
-
     private val mViews: ArrayList<View> = ArrayList()
     private val checkSy: ArrayList<CheckBox> = ArrayList()
     private var arraySymptoms = ArrayList<String>()
@@ -41,8 +40,6 @@ class SymptomsFragment : Fragment() {
         }
     }
 
-
-
     @RequiresApi(Build.VERSION_CODES.S)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -50,15 +47,8 @@ class SymptomsFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_symptoms, container, false)
         val nextButton: Button = view.findViewById(R.id.nextButton)
-        val nothingCheck: CheckBox = view.findViewById(R.id.nothing) as CheckBox
-        val dullPainCheck: CheckBox = view.findViewById(R.id.dullPain) as CheckBox
-        val throbbingPainCheck: CheckBox = view.findViewById(R.id.throbbingPain) as CheckBox
-        val nauseaCheck: CheckBox = view.findViewById(R.id.nausea) as CheckBox
         val prevButton: Button = view.findViewById(R.id.prevButton)
         val addButton: Button = view.findViewById(R.id.plusButton)
-
-
-
         layout=view.findViewById(R.id.containerSympFlex)
         buildDialog()
         n = view.findViewById(R.id.nextButton)
@@ -70,30 +60,11 @@ class SymptomsFragment : Fragment() {
         }
 
         nextButton.setOnClickListener {
-            /*   if(nothingCheck.isChecked) {
-                   symptoms = symptoms + " " + "nessuno\n"
-               }
-
-               if(dullPainCheck.isChecked) {
-                   symptoms = symptoms + " "+ "dolore sordo\n"
-               }
-
-               if (throbbingPainCheck.isChecked) {
-                   symptoms = symptoms + " "+ "dolore pulsante\n"
-               }
-
-               if (nauseaCheck.isChecked) {
-                   symptoms = symptoms + " "+ "nausea\n"
-               }*/
 
             checkIfValid()
-
-            Toast.makeText(requireContext(), symptoms, Toast.LENGTH_SHORT).show()
-
             val result = Bundle()
             result.putString("Symptoms", symptoms)
-            parentFragmentManager.setFragmentResult("datafrom3", result)
-
+            parentFragmentManager.setFragmentResult("datafromSymp", result)
             var navType = activity as FragmentNavigation
             navType.navigateFrag(PainFragment(),false)
         }
@@ -103,20 +74,13 @@ class SymptomsFragment : Fragment() {
             navType.navigateFrag(TypeFragment(),false)
         }
 
-
-
-        //Progress Var
+        //PROGRESS BAR
         val progressBar : ProgressBar = view.findViewById(R.id.progressBar)
-
         progressBar.max = 1000
-
         val currentProgress = 600
-
         ObjectAnimator.ofInt(progressBar, "progress",400, currentProgress)
             .setDuration(2000)
             .start()
-
-
 
         return view
     }
@@ -136,12 +100,10 @@ class SymptomsFragment : Fragment() {
     private fun loadData() {
         val appContext = requireContext().applicationContext
         val sharedPreferences = appContext.getSharedPreferences("sharedPreferences", Context.MODE_PRIVATE)
-
         val gson = Gson()
         val json = sharedPreferences.getString("taskListSymptoms", "[]")
         val type = object: TypeToken<ArrayList<String>>() {
         }.type
-
         if(json == null)
             arraySymptoms = ArrayList()
         else
@@ -159,41 +121,23 @@ class SymptomsFragment : Fragment() {
         }
     }
 
-
-
-
-
-
-
     @SuppressLint("ResourceAsColor")
     private fun addCheck(symptomText: String) {
         counter += 1
         checkSymptoms = CheckBox(context)
-
         checkSymptoms.text = symptomText
         checkSymptoms.textSize = 20F
         checkSymptoms.setTextColor(Color.rgb(2, 54,104))
         checkSymptoms.gravity = Gravity.CENTER
-
-        //checkSymptoms.gravity = Gravity.CENTER- ClipDrawable.HORIZONTAL
         checkSymptoms.setPadding(15, 15, 15, 15)
-
-
         checkSymptoms.setLeftTopRightBottom(10, 10,10,10)
-
-
-
         val top = resources.getDrawable(R.drawable.migranecheck)
         checkSymptoms.setCompoundDrawablesWithIntrinsicBounds(null, top, null, null)
         top.setTint(Color.rgb(29, 98,166))
         checkSymptoms.buttonDrawable = null
-
-
         checkSymptoms.id = counter
-
         layout.addView(checkSymptoms)
         mViews.add(View(context))
-
         arraySymptoms.add(symptomText)
         saveData()
     }
@@ -206,16 +150,12 @@ class SymptomsFragment : Fragment() {
         val editor = sharedPreferences.edit()
         editor.putString("taskListSymptoms", json)
         editor.apply()
-        /* editor.apply {
-             putString("STRING_KEY",  checkText)
-         }.apply()*/
-        //Toast.makeText(context,"Data saved",Toast.LENGTH_SHORT).show()
     }
 
     private fun buildDialog() {
         val builder = AlertDialog.Builder(context)
-        val v: View = layoutInflater.inflate(R.layout.dialogtype,null)
-        val symptom: EditText = v.findViewById(R.id.textdialog)
+        val v: View = layoutInflater.inflate(R.layout.dialogsymptoms,null)
+        val symptom: EditText = v.findViewById(R.id.textdialogsymptoms)
         builder.setView(v)
         builder.setPositiveButton("OK") { dialog: DialogInterface, which: Int ->
             addCheck(symptom.getText().toString())

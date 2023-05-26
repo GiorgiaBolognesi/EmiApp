@@ -19,11 +19,9 @@ private lateinit var viewModel : ViewModel
 private lateinit var dataRecyclerView : RecyclerView
 lateinit var adapter: AppAdapter
 
-
-
 class CalendarFragment : Fragment() {
-
     private var tvstartdate: String? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -38,11 +36,9 @@ class CalendarFragment : Fragment() {
         var view =  inflater.inflate(R.layout.fragment_calendar, container, false)
         val data = arguments
         if (data != null) {
-            //    Toast.makeText(context, data.getString("string").toString(), Toast.LENGTH_SHORT).show()
             val dat = Startdate()
             dat.start = data.getString("string").toString()
             viewModel = ViewModelProvider(this).get(ViewModel::class.java)
-            // viewModel.add(data.getString("string").toString())
             tvstartdate?.let { viewModel.add(it) }
         }
         return view
@@ -51,13 +47,11 @@ class CalendarFragment : Fragment() {
     //QUESTO MOSTRA A SCHERMO
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         dataRecyclerView = view.findViewById(R.id.recyclerView)
         dataRecyclerView.layoutManager = LinearLayoutManager(context)
         dataRecyclerView.setHasFixedSize(true)
         adapter = AppAdapter()
         dataRecyclerView.adapter = adapter
-
         viewModel = ViewModelProvider(this).get(ViewModel::class.java)
         viewModel.allData.observe(viewLifecycleOwner, Observer {
             adapter.updateDataList(it)
@@ -74,6 +68,4 @@ class CalendarFragment : Fragment() {
                 }
             }
     }
-
-
 }

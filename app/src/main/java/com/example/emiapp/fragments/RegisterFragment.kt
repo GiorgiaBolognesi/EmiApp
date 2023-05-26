@@ -37,16 +37,14 @@ class RegisterFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         var view = inflater.inflate(R.layout.fragment_register, container, false)
-
         username = view.findViewById(R.id.RegUserEmail)
         password = view.findViewById(R.id.RegUserPassword)
         passwordStength = view.findViewById(R.id.PasswordStength)
         auth = Firebase.auth
         val passwordStrengthCalculator = PasswordStrengthCalculator()
 
-        //observers
+        //PASSWORDSTRENGTHCALCULATOR
         passwordStrengthCalculator.strengthLevel.observe(viewLifecycleOwner, Observer { strengthLevel ->
             displayStrengthLevel(strengthLevel)
         })
@@ -64,7 +62,6 @@ class RegisterFragment : Fragment() {
         view.findViewById<Button>(R.id.Register).setOnClickListener {
             validateEmptyForm()
         }
-
         password.addTextChangedListener(passwordStrengthCalculator)
 
         return view
@@ -81,11 +78,11 @@ class RegisterFragment : Fragment() {
         icon?.setBounds(0,0,icon.intrinsicWidth,icon.intrinsicHeight)
         when {
             TextUtils.isEmpty(username.text.toString().trim())-> {
-                username.setError("Please enter email")
+                username.setError(getString(R.string.enterEmail))
             }
 
             TextUtils.isEmpty(password.text.toString().trim())-> {
-                password.setError("Please enter password")
+                password.setError(getString(R.string.enterPassword))
             }
 
             username.text.toString().isNotEmpty() && password.text.toString().isNotEmpty() -> {
@@ -94,11 +91,11 @@ class RegisterFragment : Fragment() {
                         firebaseSignUp()
                     }
                     else {
-                        password.setError("Please enter at least 8 character")
+                        password.setError(getString(R.string.eightChar))
                     }
                 }
                 else {
-                    username.setError("Please enter valid email")
+                    username.setError(getString(R.string.insertValidEmail))
                 }
             }
         }
@@ -108,7 +105,7 @@ class RegisterFragment : Fragment() {
         auth.createUserWithEmailAndPassword(username.text.toString(),password.text.toString())
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    Toast.makeText(context,"Register succesful", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context,getString(R.string.regSuccess), Toast.LENGTH_SHORT).show()
                     val user = auth.currentUser
                     val firebaseAuthWrapper : FirebaseAuthWrapper = FirebaseAuthWrapper(this.requireContext())
                     firebaseAuthWrapper.logSuccess()

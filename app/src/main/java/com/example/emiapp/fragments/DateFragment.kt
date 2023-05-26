@@ -22,6 +22,7 @@ import com.example.emiapp.R
 import com.example.emiapp.activities.MainActivity
 import com.example.emiapp.models.FragmentNavigation
 import java.text.SimpleDateFormat
+import java.time.LocalDateTime
 import java.util.*
 
 class DateFragment : Fragment() {
@@ -42,10 +43,9 @@ class DateFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        // Inflate the layout for this fragment
         var view = inflater.inflate(R.layout.fragment_date, container, false)
 
-        //default values
+        //DEFAULT VALUES
         val beginDate : TextView = view.findViewById(R.id.beginDate)
         val beginTime : TextView = view.findViewById(R.id.begindHour)
         val currentDate = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(Date())
@@ -53,7 +53,7 @@ class DateFragment : Fragment() {
         beginDate.setText(currentDate)
         beginTime.setText(currentTime)
 
-        //add date picker
+        //ADD DATE PICKER
         val startDateButton: Button = view.findViewById<View>(R.id.beginDateButton) as Button
         val endDateButton: Button = view.findViewById<View>(R.id.endDateButton) as Button
         val startDateText: TextView = view.findViewById(R.id.beginDate) as TextView
@@ -115,7 +115,7 @@ class DateFragment : Fragment() {
         })
 
 
-        // Add time picker
+        // ADD TIME PICKER
         val startTimeButton: Button = view.findViewById<View>(R.id.beginHourButton) as Button
         val endTimeButton: Button = view.findViewById<View>(R.id.endHourButton) as Button
         val startTimeText: TextView = view.findViewById(R.id.begindHour) as TextView
@@ -152,12 +152,7 @@ class DateFragment : Fragment() {
             }
         })
 
-        // loadData()
-
         nextButton.setOnClickListener {
-
-            //   saveData()
-
             val sDText = startDateText.text.toString()
             val sTText = startTimeText.text.toString()
             val eDText = endDateText.text.toString()
@@ -182,6 +177,15 @@ class DateFragment : Fragment() {
                 var difference: Long = endDate.getTime() - startDate.getTime()
                 val diffdays: Long = endDay.getTime() - startDay.getTime()
                 var durDays = (diffdays / (1000 * 60 * 60 * 24)).toInt()
+
+                val time = Calendar.getInstance().time
+                val currentDate = simpleDayFormat.format(time)
+                val currentTime = simpleDateFormat.format(time)
+                val currentDateParsed = simpleDayFormat.parse(currentDate)
+                val currentTimeParsed = simpleDateFormat.parse(currentTime)
+
+
+
                 if ((durDays == 0 && difference < 0)) {
                     Toast.makeText(context, getString(R.string.alertDays), Toast.LENGTH_SHORT)
                         .show()
@@ -211,7 +215,11 @@ class DateFragment : Fragment() {
                     } else if (durDays < 0) {
                         Toast.makeText(context, getString(R.string.alertDays), Toast.LENGTH_SHORT)
                             .show()
-                    } else {
+                    } else if ((currentDateParsed.time - endDay.time <= 0) && (currentTimeParsed.time-endDate.time <0)){
+                        Toast.makeText(context, getString(R.string.notValid), Toast.LENGTH_SHORT)
+                            .show()
+                    }
+                    else {
                         val result = Bundle()
                         result.putString("startDate", sDText)
                         result.putString("startTime", sTText)
@@ -221,55 +229,27 @@ class DateFragment : Fragment() {
                         result.putString("hour", hours.toString())
                         result.putString("min", min.toString())
 
-                        parentFragmentManager.setFragmentResult("datafrom1", result)
-
+                        parentFragmentManager.setFragmentResult("datafromDate", result)
                         var nav = activity as FragmentNavigation
                         nav.navigateFrag(TypeFragment(), false)
                     }
                 }
             }
-
-
-
         }
 
         prevButton.setOnClickListener {
-            val intent : Intent = Intent(this.context, MainActivity::class.java)
+            val intent = Intent(this.context, MainActivity::class.java)
             context?.startActivity(intent)
         }
 
-
-        //Progress Var
+        //PROGRESS BAR
         val progressBar : ProgressBar = view.findViewById(R.id.progressBar)
-
         progressBar.max = 1000
-
         val currentProgress = 200
-
         ObjectAnimator.ofInt(progressBar, "progress", currentProgress)
             .setDuration(2000)
             .start()
 
-
         return view
-    }
-
-    private fun loadData() {
-        val appContext = requireContext().applicationContext
-        val sharedPreferences = appContext.getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE)
-        val endTimeView = sharedPreferences.getString("endTimeText",null)
-        val endDateView = sharedPreferences.getString("endDateText",null)
-        endDateText.text=endDateView
-        endTimeText.text=endTimeView
-    }
-
-    private fun saveData() {
-        val appContext = requireContext().applicationContext
-        val sharedPreferences = appContext.getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE)
-        val editor = sharedPreferences.edit()
-        editor.apply {
-            putString("endDateText", endDateText.text.toString() )
-            putString("endTimeText",endTimeText.text.toString())
-        }.apply()
     }
 }

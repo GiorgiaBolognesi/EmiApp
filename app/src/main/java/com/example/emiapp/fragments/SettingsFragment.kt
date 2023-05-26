@@ -17,24 +17,16 @@ import com.example.emiapp.models.MyPreference
 
 
 class SettingsFragment : Fragment() {
-
-
     lateinit var seekBar: SeekBar
     lateinit var intensity : TextView
     lateinit var switch: SwitchCompat
     lateinit var spinner: Spinner
-
-
-
     var text : String? = null
     var nightModeSwitched : Boolean = false
-
     lateinit var sharedPreferences: SharedPreferences
-
     lateinit var myPreference: MyPreference
-    val languageList:Array<String> = arrayOf("en-us", "en")
+    val languageList:Array<String> = arrayOf("italiano", "en")
     lateinit var button: Button
-
     lateinit var audioManager: AudioManager
     lateinit var buttonPlus: Button
     lateinit var buttonMinus : Button
@@ -50,12 +42,7 @@ class SettingsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
-
-
         val view = inflater.inflate(R.layout.fragment_settings, container, false)
-
-
         seekBar = view.findViewById(R.id.seekbar)
         intensity = view.findViewById(R.id.intensity)
         spinner = view.findViewById(R.id.spinner)
@@ -63,9 +50,6 @@ class SettingsFragment : Fragment() {
         button = view.findViewById(R.id.button)
         buttonPlus = view.findViewById(R.id.up)
         buttonMinus = view.findViewById(R.id.down)
-
-
-
 
         //volume buttons
         buttonPlus.setOnClickListener {
@@ -80,29 +64,19 @@ class SettingsFragment : Fragment() {
             Toast.makeText(context,"Volume diminuito", Toast.LENGTH_SHORT).show();
         }
 
-
-
-
         myPreference = MyPreference(requireContext())
-
         sharedPreferences = requireContext().getSharedPreferences("shared_prefs", Context.MODE_PRIVATE)
-
 
         //volume
         audioManager = requireContext().getSystemService(Context.AUDIO_SERVICE) as AudioManager
         seekBar.setMax(audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC));
         seekBar.setProgress(audioManager.getStreamVolume(AudioManager.STREAM_MUSIC));
 
-
         //seekbar
         seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
-
                 intensity.text = progress.toString()
-
-
                 saveData()
-
             }
 
             override fun onStartTrackingTouch(seekBar: SeekBar?) {
@@ -112,8 +86,6 @@ class SettingsFragment : Fragment() {
             }
 
         })
-
-
 
         //spinner
         var languages = arrayOf("italiano", "inglese")
@@ -125,146 +97,61 @@ class SettingsFragment : Fragment() {
         if(index >= 0) {
             spinner.setSelection(index)
         }
-
         button.setOnClickListener {
             myPreference.setLoginCount(languageList[spinner.selectedItemPosition])
 
         }
 
-
-
-
-
-        /*spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(
-                parent: AdapterView<*>?,
-                view: View?,
-                position: Int,
-                id: Long
-            ) {
-                text = spinner.getItemAtPosition(position).toString()
-                //Toast.makeText(context, "La lingua selezionata è:"+languages[position], Toast.LENGTH_SHORT).show()
-            }
-
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-
-            }
-
-        }*/
-
-        //switch
-
         switch.setOnClickListener {
-
             if(switch.isChecked) {
-
                 //night mode
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-
                 nightModeSwitched = true
-
                 if (nightModeSwitched == true) {
-
                     val profileFragment = SettingsFragment()
                     val transaction: FragmentTransaction = parentFragmentManager.beginTransaction()
                     transaction.replace(R.id.layout, profileFragment)
                     transaction.commit()
-
-
-
                 }
-
-
-
-
-                Toast.makeText(context, "attivo", Toast.LENGTH_SHORT).show()
-
-
-                //val intent : Intent = Intent(this.context, MainActivity::class.java)
-                //context?.startActivity(intent)
-
                 saveData()
-
-            } else
+            } else {
             //day mode
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
 
             nightModeSwitched = false
-
             if (nightModeSwitched == false) {
 
                 val profileFragment = SettingsFragment()
                 val transaction: FragmentTransaction = parentFragmentManager.beginTransaction()
                 transaction.replace(R.id.layout, profileFragment)
                 transaction.commit()
-
+             }
             }
-
-
             saveData()
-
-
-
-            Toast.makeText(context, "disattivato", Toast.LENGTH_SHORT).show()
-
         }
-
-
-
-
-
         loadData()
-
-
-
-
-
 
         return view
     }
 
-
-
     private fun loadData() {
-
-        //intensity.text = sharedPreferences.getString("saved_string", null)
         switch.isChecked = sharedPreferences.getBoolean("save_state", false)
         intensity.text = sharedPreferences.getString("save_string", null)
         seekBar.progress = sharedPreferences.getInt("save_progress", 0)
         text = sharedPreferences.getString("save_lan", null)
-
-        //Toast.makeText(context, "caricati", Toast.LENGTH_SHORT).show()
-
     }
 
     private fun saveData() {
         val editor = sharedPreferences.edit()
-
         editor.apply {
-
             putBoolean("save_state", switch.isChecked)
             putString("save_string", intensity.text.toString())
             putInt("save_progress", seekBar.progress)
             putString("save_lan", text)
 
         }.apply()
-
-        //Toast.makeText(context, "salvati", Toast.LENGTH_SHORT).show()
     }
-
-
-
-
-
-
-
-
-
-
-
-
     companion object {
-
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
             SettingsFragment().apply {

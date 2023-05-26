@@ -28,7 +28,6 @@ class TypeFragment : Fragment() {
     var typeH: String = ""
     lateinit var n : Button
     lateinit var checkB: CheckBox
-
     private val mViews: ArrayList<View> = ArrayList()
     private val checkBB: ArrayList<CheckBox> = ArrayList()
     private var arraycheck = ArrayList<String>()
@@ -36,25 +35,15 @@ class TypeFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            //   initializeViews()
-
         }
     }
-
-    /*  private fun initializeViews() {
-           mViews.add( View(context))
-          mViews.add( View(context))
-          mViews.add( View(context))
-          mViews.add( View(context))
-          mViews.add( View(context))
-      }*/
 
     @RequiresApi(Build.VERSION_CODES.S)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
+
         val view = inflater.inflate(R.layout.fragment_type, container, false)
         val nextButton: Button = view.findViewById(R.id.nextButton)
         val migraineCheck: CheckBox = view.findViewById(R.id.emicrania) as CheckBox
@@ -64,46 +53,19 @@ class TypeFragment : Fragment() {
         val addButton: Button = view.findViewById(R.id.plusButton)
         layout=view.findViewById(R.id.containerTypeFlex)
         buildDialog()
-        // initializeViews()
         n = view.findViewById(R.id.nextButton)
 
         loadData()
-        // arraycheck.add(migraineCheck.text.toString())
-
-/*
-        for(i in 0 until checkBB.size) {
-            val checkB: CheckBox? = checkBB.get(i)
-            if (checkB != null) {
-                addCheck(checkB.text.toString())
-            }
-        }*/
-
 
         addButton.setOnClickListener {
             dialog?.show()
         }
 
         nextButton.setOnClickListener {
-
-            if(migraineCheck.isChecked) {
-                typeH = typeH + " " + "emicrania\n"
-            }
-
-            if(headacheCheck.isChecked) {
-                typeH = typeH + " "+ "cefalea\n"
-            }
-
-            if (bunchCheck.isChecked) {
-                typeH = typeH + " "+ "emicrania a grappolo\n"
-            }
-
             checkIfValid()
-
-            // Toast.makeText(requireContext(), typeH,Toast.LENGTH_SHORT).show()
-
             val result = Bundle()
             result.putString("Typeh", typeH)
-            parentFragmentManager.setFragmentResult("datafrom2", result)
+            parentFragmentManager.setFragmentResult("datafromType", result)
 
             var navType = activity as FragmentNavigation
             navType.navigateFrag(SymptomsFragment(),false)
@@ -115,21 +77,13 @@ class TypeFragment : Fragment() {
         }
 
 
-        //Progress Var
+        //PROGRESS BAR
         val progressBar : ProgressBar = view.findViewById(R.id.progressBar)
-
         progressBar.max = 1000
-
         val currentProgress = 400
-
         ObjectAnimator.ofInt(progressBar, "progress",200,  currentProgress)
             .setDuration(2000)
             .start()
-
-
-
-
-
 
         return view
     }
@@ -138,12 +92,10 @@ class TypeFragment : Fragment() {
     private fun loadData() {
         val appContext = requireContext().applicationContext
         val sharedPreferences = appContext.getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE)
-
         val gson = Gson()
         val json = sharedPreferences.getString("taskList", "[]")
         val type = object: TypeToken<ArrayList<String>>() {
         }.type
-
         if(json == null)
             arraycheck = ArrayList()
         else
@@ -175,7 +127,6 @@ class TypeFragment : Fragment() {
 
     @RequiresApi(Build.VERSION_CODES.S)
     private fun buildDialog() {
-
         val builder = AlertDialog.Builder(context)
         val v: View = layoutInflater.inflate(R.layout.dialogtype,null)
         val type: EditText = v.findViewById(R.id.textdialog)
@@ -191,38 +142,27 @@ class TypeFragment : Fragment() {
     @RequiresApi(Build.VERSION_CODES.S)
     @SuppressLint("ResourceAsColor")
     private fun addCheck(typeText: String) {
-
-        //arraycheck.add(typeText)
-
         counter += 1
         checkB = CheckBox(context)
-
         checkB.text = typeText
         checkB.textSize = 20F
         checkB.setTextColor(Color.rgb(2, 54,104))
         checkB.setGravity(Gravity.CENTER)
-
         checkB.setPadding(12,12,12,12)
-        //checkB.setButtonDrawable(resources.getDrawable(R.drawable.migranecheck))
-
         val top = resources.getDrawable(R.drawable.migranecheck)
         checkB.setCompoundDrawablesWithIntrinsicBounds(null, top, null, null)
         top.setTint(Color.rgb(29, 98,166))
-
         checkB.buttonDrawable = null
         checkB.id = counter
-
         layout.addView(checkB)
         mViews.add(View(context))
-
         arraycheck.add(typeText)
         saveData()
 
     }
 
     private fun saveData() {
-        val checkText : String = checkB.text.toString()
-
+        checkB.text.toString()
         val appContext = requireContext().applicationContext
         val sharedPreferences = appContext.getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE)
         val gson = Gson()
@@ -230,12 +170,5 @@ class TypeFragment : Fragment() {
         val editor = sharedPreferences.edit()
         editor.putString("taskList", json)
         editor.apply()
-        /* editor.apply {
-             putString("STRING_KEY",  checkText)
-         }.apply()*/
-        Toast.makeText(context,"Data saved", Toast.LENGTH_SHORT).show()
-
-
-
     }
 }
