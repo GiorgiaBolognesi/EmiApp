@@ -29,7 +29,6 @@ class ViewModel : ViewModel(){
     fun addData(data: Data) {
         val user:String? = Firebase.auth.currentUser?.uid
         val timeStampPref: DatabaseReference = FirebaseDatabase.getInstance().getReference(HEADACHE_NODE)
-        //senderReference.setValue(data)
         timeStampPref.child(user!!).push().setValue(data).addOnCompleteListener {
             if(it.isSuccessful) {
                 _result.value = null

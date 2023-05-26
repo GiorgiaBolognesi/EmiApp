@@ -1,9 +1,14 @@
 package com.example.emiapp.models
 
+
+import android.content.Context
+import android.content.res.Resources
+import android.provider.Settings.Global.getString
 import android.text.Editable
 import android.text.TextWatcher
 import androidx.lifecycle.MutableLiveData
 import com.example.emiapp.R
+import com.example.emiapp.fragments.RegisterFragment
 import java.util.regex.Matcher
 import java.util.regex.Pattern
 
@@ -24,7 +29,6 @@ class PasswordStrengthCalculator : TextWatcher {
             upperCase.value = if(char.hasLowerCase()) {1} else {0}
             digit.value = if(char.hasLowerCase()) {1} else {0}
             specialchar.value = if(char.hasLowerCase()) {1} else {0}
-
             calculateStrength(char)
         }
     }
@@ -33,24 +37,25 @@ class PasswordStrengthCalculator : TextWatcher {
     }
 
     private fun calculateStrength(password: CharSequence) {
+
         if (password.length in 0..7) {
             strengthColor.value = R.color.weak
-            strengthLevel.value = "WEAK PASSWORD"
+            strengthLevel.value = "PASSWORD DEBOLE"
         } else if (password.length in 8..10) {
             if (lowerCase.value == 1 || upperCase.value == 1 || digit.value == 1 || specialchar.value == 1) {
                 strengthColor.value = R.color.medium
-                strengthLevel.value = "MEDIUM PASSWORD"
+                strengthLevel.value = "PASSWORD MEDIA"
             }
         } else if (password.length in 11..16) {
             if (lowerCase.value == 1 || upperCase.value == 1 || digit.value == 1 || specialchar.value == 1) {
                 if (lowerCase.value == 1 && upperCase.value == 1) {
                     strengthColor.value = R.color.strong
-                    strengthLevel.value = "STRONG PASSWORD"
+                    strengthLevel.value = "PASSWORD FORTE"
                 }
             } else if (password.length > 16) {
                 if (lowerCase.value == 1 && upperCase.value == 1 && digit.value == 1 && specialchar.value == 1) {
                     strengthColor.value = R.color.bulletproof
-                    strengthLevel.value = "BULLETPROOF PASSWORD"
+                    strengthLevel.value = "PASSWORD MOLTO FORTE"
                 }
             }
         }
