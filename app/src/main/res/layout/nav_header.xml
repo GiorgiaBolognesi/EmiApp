@@ -4,8 +4,7 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:layout_marginTop="16dp"
-    android:layout_marginStart="16dp"
-    android:background="@color/white" >
+    android:layout_marginStart="16dp" >
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/tvimagenav"
@@ -23,7 +22,7 @@
         android:textSize="20dp"
         android:textStyle="bold"
         android:layout_marginTop="10dp"
-        android:textColor="@color/black"
+        android:textColor="@color/celeste"
         android:text="email@email.com" />
 
     <View

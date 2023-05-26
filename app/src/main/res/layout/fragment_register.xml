@@ -114,7 +114,7 @@
                     android:padding="8dp"
                     android:text="@string/LoginButton"
                     android:textColor="@color/lavander"
-                    android:textSize="25dp"
+                    android:textSize="20dp"
                     android:textStyle="bold" />
 
             </LinearLayout>

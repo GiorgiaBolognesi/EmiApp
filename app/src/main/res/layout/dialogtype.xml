@@ -42,7 +42,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tipo"
-            android:hint="Tipo"/>
+            android:hint="@string/type"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

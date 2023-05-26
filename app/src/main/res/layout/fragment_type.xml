@@ -48,7 +48,7 @@
                 android:id="@+id/titleType"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/black"
+                android:textColor = "?android:textColorPrimary"
                 android:layout_marginTop="30dp"
                 android:text="@string/introType"
                 android:textSize="25sp" />

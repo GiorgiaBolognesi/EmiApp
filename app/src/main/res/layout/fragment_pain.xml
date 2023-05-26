@@ -31,6 +31,16 @@
             style="?android:attr/progressBarStyleHorizontal"
             android:layout_gravity="center"
             android:progressTint="@color/celeste"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="@string/painlevel"
+            android:textColor = "?android:textColorPrimary"
+            android:textSize="25sp"
+            android:paddingLeft="20dp"/>
+
     </LinearLayout>
 
 
@@ -42,7 +52,7 @@
         android:layout_width="230dp"
         android:layout_height="230dp"
         android:alpha="0.1"
-        android:layout_marginBottom="150dp"
+        android:layout_marginBottom="40dp"
         android:layout_gravity="center"
         android:src="@drawable/headpain" />
 
@@ -74,7 +84,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="@string/nessun_dolore"
+            android:text=""
             android:textSize="30sp"
             android:textStyle="bold|italic" />
 

@@ -47,7 +47,7 @@
             android:id="@+id/titleType"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/black"
+            android:textColor = "?android:textColorPrimary"
             android:text="@string/intro"
             android:textSize="25sp" />
 
@@ -167,30 +167,30 @@
             </TableRow>
         </TableLayout>
 
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/prevButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom|left"
-                android:layout_marginStart="10dp"
-                android:text="@string/previous" />
-
-            <Button
-                android:id="@+id/nextButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom|right"
-                android:layout_marginEnd="10dp"
-                android:text="@string/next" />
-
-        </FrameLayout>
 
     </LinearLayout>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/prevButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|left"
+            android:layout_marginStart="10dp"
+            android:text="@string/previous" />
+
+        <Button
+            android:id="@+id/nextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|right"
+            android:layout_marginEnd="10dp"
+            android:text="@string/next" />
+
+    </FrameLayout>
 
 </FrameLayout>

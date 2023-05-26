@@ -61,7 +61,7 @@
             <TextView
                 android:id="@+id/emailProfile"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="48dp"
                 android:layout_weight="1"
                 android:background="@null"
                 android:text="email"
@@ -100,12 +100,14 @@
             <EditText
                 android:id="@+id/profileName"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="48dp"
+                android:textColorHint="@color/celeste"
+                android:hint="@string/option"
                 android:layout_weight="1"
                 android:background="@null"
-                android:text="Nessun dato inserito"
-                android:textAlignment="viewEnd"
+                android:text=""
                 android:textColor="@color/celeste"
+                android:textAlignment="viewEnd"
                 android:textSize="18sp" />
 
         </LinearLayout>
@@ -137,12 +139,14 @@
             <EditText
                 android:id="@+id/profileSex"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="48dp"
                 android:layout_weight="1"
                 android:background="@null"
-                android:text="Nessun dato inserito"
+                android:hint="@string/option"
+                android:text=""
                 android:textAlignment="viewEnd"
                 android:textColor="@color/celeste"
+                android:textColorHint="@color/celeste"
                 android:textSize="18sp" />
 
         </LinearLayout>
@@ -187,10 +191,12 @@
             <TextView
                 android:id="@+id/profileDate"
                 android:layout_width="wrap_content"
-                android:layout_height="50dp"
+                android:layout_height="48dp"
+                android:hint="@string/option"
+                android:textColorHint="@color/celeste"
                 android:layout_weight="1"
                 android:background="@null"
-                android:text="Nessun dato inserito"
+                android:text=""
                 android:textAlignment="viewEnd"
                 android:textColor="@color/celeste"
                 android:textSize="18sp" />
@@ -204,14 +210,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="104dp"
-        android:layout_marginTop="24dp"
-        android:text="Modifica dati"
         android:backgroundTint="@color/lavander"
+        android:text="@string/modify"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lineaLayout" />
-
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
