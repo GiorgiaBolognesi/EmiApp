@@ -23,9 +23,9 @@
     <string name="Save">Confirm</string>
     <string name="Duration">Duration:</string>
     <string name="introType">What are the attack types?</string>
-    <string name="emicrania">emicrania</string>
-    <string name="cefalea">cefalea</string>
-    <string name="grappolo">emicrania\n a grappolo</string>
+    <string name="emicrania">migraine</string>
+    <string name="cefalea">headhache</string>
+    <string name="grappolo">cluster migraine</string>
     <string name="insertEndDate">Insert the end date of the attack</string>
     <string name="insertEndTime">Insert the end time of the attack</string>
     <string name="alertDuration">Warning! The duration of the attack is null</string>
@@ -34,8 +34,8 @@
     <string name="TypeHeadAche">Type:</string>
     <string name="introSymptoms">Are you experiencing one of these symptoms?</string>
     <string name="nothing">nothing</string>
-    <string name="dullPain">dolore sordo</string>
-    <string name="throbbingPain">dolore pulsante</string>
+    <string name="dullPain">dull pain</string>
+    <string name="throbbingPain">throbbing pain</string>
     <string name="nausea">nausea</string>
     <string name="insertNewSymptom">Insert symptoms</string>
     <string name="insertNewType">Insert type</string>
@@ -77,7 +77,7 @@
     <string name="cancella1">Delete</string>
     <string name="conferma">Confirm</string>
     <string name="elimina">Delete</string>
-    <string name="cancella2">Delete</string>
+    <string name="cancella2">Cancel</string>
     <string name="conferma2">Confirm</string>
     <string name="inserisci_sintomo">Type a symptom</string>
     <string name="inserisci_tipo">Type the type</string>
