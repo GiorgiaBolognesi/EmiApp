@@ -1,0 +1,363 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/card"
+    android:layout_marginStart="12dp"
+    android:layout_marginEnd="12dp"
+    android:layout_marginHorizontal="20dp"
+    android:layout_marginVertical="10dp"
+    app:cardCornerRadius="10dp"
+    app:cardElevation="8dp"
+    android:backgroundTint="@color/celestechiaro3"
+    >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/border">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/image"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="20dp"
+                    android:padding="8dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/calendar"
+                    android:tint="@color/celestescuro" />
+
+                <TextView
+                    android:layout_width="120dp"
+                    android:layout_height="30dp"
+                    android:id="@+id/dataInizio"
+                    android:text="@string/data_inizio"
+                    android:textSize="18sp"
+                    android:textColor="@color/celestescuro"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="20dp"
+                    />
+
+                <TextView
+                    android:id="@+id/tvstartDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text=""
+                    android:textColor="@color/celeste"
+                    android:textSize="20sp"
+                    android:layout_toEndOf="@+id/dataInizio"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="sans-serif-condensed"/>
+
+            </LinearLayout>
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:id="@+id/image1"
+                    android:layout_marginStart="20dp"
+                    android:padding="8dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/clock"
+                    app:shapeAppearanceOverlay="@style/roundedImageViewRounded"
+                    android:tint="@color/celestescuro"
+                    />
+
+                <TextView
+                    android:layout_width="120dp"
+                    android:layout_height="30dp"
+                    android:id="@+id/oraInizio"
+                    android:text="@string/ora_inizio"
+                    android:textSize="18sp"
+                    android:textColor="@color/celestescuro"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="20dp"
+                    />
+
+                <TextView
+                    android:id="@+id/tvstartTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text=""
+                    android:textColor="@color/celeste"
+                    android:textSize="20sp"
+                    android:layout_toEndOf="@+id/oraInizio"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="sans-serif-condensed"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:id="@+id/image2"
+                    android:layout_marginStart="20dp"
+                    android:padding="8dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/calendar"
+                    android:tint="@color/celestescuro"
+                    />
+
+                <TextView
+                    android:layout_width="120dp"
+                    android:layout_height="30dp"
+                    android:id="@+id/dataFine"
+                    android:text="@string/data_fine"
+                    android:textSize="18sp"
+                    android:textColor="@color/celestescuro"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="20dp"
+                    />
+
+                <TextView
+                    android:id="@+id/tvendDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text=""
+                    android:textColor="@color/celeste"
+                    android:textSize="20sp"
+                    android:layout_toEndOf="@+id/dataFine"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="sans-serif-condensed"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:id="@+id/image3"
+                    android:layout_marginStart="20dp"
+                    android:padding="8dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/clock"
+                    app:shapeAppearanceOverlay="@style/roundedImageViewRounded"
+                    android:tint="@color/celestescuro"
+                    />
+
+                <TextView
+                    android:layout_width="120dp"
+                    android:layout_height="30dp"
+                    android:id="@+id/oraFine"
+                    android:text="@string/ora_fine"
+                    android:textSize="18sp"
+                    android:textColor="@color/celestescuro"
+                    android:layout_toEndOf="@+id/image2"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="20dp"
+                    />
+
+                <TextView
+                    android:id="@+id/tvendTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text=""
+                    android:textColor="@color/celeste"
+                    android:textSize="20sp"
+                    android:layout_toEndOf="@+id/oraFine"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="sans-serif-condensed"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:id="@+id/image4"
+                    android:layout_marginStart="20dp"
+                    android:padding="8dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/type"
+                    android:tint="@color/celestescuro"
+                    />
+
+                <TextView
+                    android:layout_width="120dp"
+                    android:layout_height="30dp"
+                    android:id="@+id/tipo"
+                    android:text="@string/tipologia"
+                    android:textSize="18sp"
+                    android:textColor="@color/celestescuro"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="20dp"
+                    />
+
+                <TextView
+                    android:id="@+id/tvtype"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text=""
+                    android:textColor="@color/celeste"
+                    android:textSize="20sp"
+                    android:layout_toEndOf="@+id/tipo"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="sans-serif-condensed"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:id="@+id/image5"
+                    android:layout_marginStart="20dp"
+                    android:padding="8dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/symptom"
+                    android:tint="@color/celestescuro"
+                    />
+
+                <TextView
+                    android:layout_width="120dp"
+                    android:layout_height="30dp"
+                    android:id="@+id/sintomi1"
+                    android:text="@string/sintomi"
+                    android:textSize="18sp"
+                    android:textColor="@color/celestescuro"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="20dp"
+                    />
+
+                <TextView
+                    android:id="@+id/tvsymptoms"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text=""
+                    android:textColor="@color/celeste"
+                    android:textSize="20sp"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="sans-serif-condensed"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:id="@+id/image6"
+                    android:layout_marginStart="20dp"
+                    android:padding="8dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/pain"
+                    android:tint="@color/celestescuro"
+                    android:layout_marginTop="10dp"
+                    />
+
+                <TextView
+                    android:layout_width="120dp"
+                    android:layout_height="30dp"
+                    android:id="@+id/dolore"
+                    android:text="@string/dolore"
+                    android:textSize="18sp"
+                    android:textColor="@color/celestescuro"
+                    android:layout_toEndOf="@+id/image2"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="20dp"
+                    />
+
+                <TextView
+                    android:id="@+id/tvpain"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text=""
+                    android:textColor="@color/celeste"
+                    android:textSize="20sp"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="sans-serif-condensed"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="10dp">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:id="@+id/image7"
+                    android:layout_marginStart="20dp"
+                    android:padding="8dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/notes"
+                    android:tint="@color/celestescuro"
+                    />
+
+                <TextView
+                    android:layout_width="120dp"
+                    android:layout_height="30dp"
+                    android:id="@+id/nota"
+                    android:text="@string/commentodata"
+                    android:textSize="18sp"
+                    android:textColor="@color/celestescuro"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="20dp"
+                    />
+
+                <TextView
+                    android:id="@+id/tvnote"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text=""
+                    android:textColor="@color/celeste"
+                    android:textSize="20sp" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

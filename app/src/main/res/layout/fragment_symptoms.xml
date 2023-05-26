@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.SymptomsFragment">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="5dp"
+        android:id="@+id/seekbar">
+
+        <TextView
+            android:id="@+id/progressDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="3/5"
+            android:gravity="center"
+            android:textSize="15sp"
+            android:textColor="@color/celeste"/>
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="300dp"
+            android:layout_height="40dp"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_gravity="center"
+            android:progressTint="@color/celeste"
+            />
+    </LinearLayout>
+
+
+
+
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/titleType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:layout_marginStart="18dp"
+                android:text="@string/introSymptoms"
+                android:textSize="25sp" />
+
+            <com.google.android.flexbox.FlexboxLayout
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/containerSympFlex"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                app:flexWrap="wrap"
+                app:alignItems="stretch"
+                app:alignContent="stretch"
+                android:padding="10dp">
+
+
+                <CheckBox
+                    android:id="@+id/nothing"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:drawableTop="@drawable/migranecheck"
+                    android:drawableTint="@color/celestescuro"
+                    android:button="@null"
+                    android:shape="ring"
+                    android:padding="10dp"
+                    android:text="@string/nothing"
+                    android:textSize="18sp"
+                    android:textColor="@color/black"/>
+
+                <CheckBox
+                    android:id="@+id/dullPain"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:drawableTop="@drawable/migranecheck"
+                    android:button="@null"
+                    android:padding="10dp"
+                    android:textSize="18sp"
+                    android:text ="@string/dullPain"
+                    android:textColor="@color/black"
+                    android:drawableTint="@color/celestescuro"/>
+
+                <CheckBox
+                    android:id="@+id/throbbingPain"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:drawableTop="@drawable/migranecheck"
+                    android:button="@null"
+                    android:padding="10dp"
+                    android:text ="@string/throbbingPain"
+                    android:textColor="@color/black"
+                    android:drawableTint="@color/celestescuro"/>
+
+                <CheckBox
+                    android:id="@+id/nausea"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:drawableTop="@drawable/migranecheck"
+                    android:drawableTint="@color/celestescuro"
+                    android:button="@null"
+                    android:textSize="18sp"
+                    android:padding="10dp"
+                    android:text ="@string/nausea"
+                    android:textColor="@color/black"
+                    />
+
+
+            </com.google.android.flexbox.FlexboxLayout>
+
+            <Button
+                android:id="@+id/plusButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/plus"/>
+        </LinearLayout>
+
+    </ScrollView>
+
+
+    <FrameLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/prevButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|left"
+            android:layout_marginStart="10dp"
+            android:text="@string/previous" />
+
+        <Button
+            android:id="@+id/nextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|right"
+            android:layout_marginEnd="10dp"
+            android:text="@string/next" />
+
+    </FrameLayout>
+
+
+
+
+</FrameLayout>

@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragments.NoteFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="5dp"
+        android:id="@+id/seekbar">
+
+        <TextView
+            android:id="@+id/progressDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="5/5"
+            android:gravity="center"
+            android:textSize="15sp"
+            android:textColor="@color/celeste"/>
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="300dp"
+            android:layout_height="40dp"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_gravity="center"
+            android:progressTint="@color/celeste" />
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:orientation="vertical"
+        android:layout_marginTop="60dp"
+        android:id="@id/note">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="@string/ti_piacerebbe_aggiungere_un_commento"
+            android:textColor="@color/black"
+            android:textSize="25sp"
+            android:paddingLeft="20dp"/>
+
+
+        <EditText
+            android:id="@+id/Note"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:layout_gravity="center"
+            android:layout_margin="20dp"
+            android:layout_weight="1"
+            android:background="@drawable/border1"
+            android:gravity="top"
+            android:hint="Scrivi un commento..."
+            android:inputType="textMultiLine"
+            android:maxLines="50"
+            android:padding="10dp"
+            android:textColor="@color/black"
+            android:textSize="22sp"
+            />
+    </LinearLayout>
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/prevButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|left"
+            android:layout_marginStart="10dp"
+            android:text="@string/previous" />
+
+        <Button
+            android:id="@+id/nextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|right"
+            android:layout_marginEnd="10dp"
+            android:text="@string/next" />
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="470dp"
+            app:layout_constraintStart_toStartOf="@+id/note">
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                android:orientation="horizontal"
+                >
+
+                <Button
+                    android:id="@+id/suggestionDate"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:background="@drawable/lavander_border1"
+                    android:backgroundTint="@color/celestechiaro2"
+                    android:clickable="true"
+                    android:text="@string/data_corrente"
+                    android:layout_marginEnd="15dp"
+                    />
+
+                <Button
+                    android:id="@+id/suggestionTime"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:background="@drawable/lavander_border1"
+                    android:backgroundTint="@color/celestechiaro2"
+                    android:clickable="true"
+                    android:text="@string/orario_corrente"
+                    android:layout_marginEnd="15dp"
+                    />
+
+                <Button
+                    android:id="@+id/suggestion1"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:background="@drawable/lavander_border1"
+                    android:backgroundTint="@color/celestechiaro2"
+                    android:clickable="true"
+                    android:text="@string/livello_dolore"
+                    android:layout_marginEnd="15dp"
+                    />
+
+                <Button
+                    android:id="@+id/suggestion2"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:background="@drawable/lavander_border1"
+                    android:backgroundTint="@color/celestechiaro2"
+                    android:clickable="true"
+                    android:text="@string/attacco_terminato"
+                    android:textSize="12sp"
+                    android:layout_marginRight="15dp"/>
+
+                <Button
+                    android:id="@+id/suggestion3"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:background="@drawable/lavander_border1"
+                    android:backgroundTint="@color/celestechiaro2"
+                    android:clickable="true"
+                    android:textSize="12sp"
+                    android:text="@string/sintomo_ridotto"
+                    android:layout_marginRight="15dp"/>
+
+            </LinearLayout>
+        </HorizontalScrollView>
+
+    </FrameLayout>
+
+
+
+
+
+
+</RelativeLayout>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#99ff66</color>
+    <color name="purple_500">#99ff66</color>
+    <color name="green">#99ff66</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="weak">#FF4646</color>
+    <color name="medium">#ff8f00</color>
+    <color name="strong">#FCCA3F</color>
+    <color name="bulletproof">#00c853</color>
+    <color name="opacityGreen">#4099ff66</color>
+    <color name="DarkSeaGreen">#8FBC8F</color>
+    <color name="ForestGreen">#228B22</color>
+    <color name="lavander">#8692f7</color>
+    <color name="lavander1">#727DD3</color>
+    <color name="celeste">#4C83AF</color>
+    <color name="celestechiaro">#8FA7BF</color>
+    <color name="celeste1">#95A8BC</color>
+    <color name="celestechiaro2">#D4E0EC</color>
+    <color name="celestescuro">#1D62A6</color>
+    <color name="celestechiaro3">#E2EAEF</color>
+    <color name="celestescuro1">#023668</color>
+    <color name="celestechiaro4">#EFFCFD</color>
+
+
+
+
+    <color name="nightmode">#6124B1</color>
+    <color name="notification">#D47DE3</color>
+
+
+
+
+
+
+</resources>
